@@ -66,6 +66,7 @@ import {
   localizeUsedModelLabel,
   localizeColorName,
   localizeProductName,
+  localizeProductSubtitle,
   localizeSubcategory
 } from './data/i18n';
 
@@ -546,9 +547,10 @@ export default function App() {
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase().trim();
         const matchesName = model.name.toLowerCase().includes(query);
+        const matchesSubtitle = model.subtitle?.toLowerCase().includes(query) || false;
         const matchesSubcat = model.subcategory.toLowerCase().includes(query);
         const matchesVariant = model.variants.some((v) => v.fullName.toLowerCase().includes(query));
-        if (!matchesName && !matchesSubcat && !matchesVariant) {
+        if (!matchesName && !matchesSubtitle && !matchesSubcat && !matchesVariant) {
           return false;
         }
       }
@@ -689,50 +691,49 @@ export default function App() {
   const logoSrc = logoPath.startsWith('http')
     ? logoPath
     : `${cleanBase}/${logoPath.replace(/^\//, '')}`;
-  const founderImgPath = SITE_INFO.founder?.image || '/aruzhan.jpg';
+  const founderImgPath = SITE_INFO.founder?.image || '/aruzhan_profile.webp';
   const founderSrc = founderImgPath.startsWith('http')
     ? founderImgPath
     : `${cleanBase}/${founderImgPath.replace(/^\//, '')}`;
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#f8f9fb] dark:bg-[#0a0d14] text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip flex flex-col font-sans bg-[#f8f9fb] dark:bg-[#0a0d14] text-slate-900 dark:text-slate-100 transition-colors duration-200">
       
       {/* ====================================================================== */}
       {/* 1. HEADER (OPTIMIZED FOR MOBILE, TABLET & DESKTOP — NO OVERLAPS)       */}
       {/* ====================================================================== */}
-      <header className="sticky top-0 z-40 bg-white/95 dark:bg-[#0a0d14]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-white/10 transition-colors">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <header className="sticky top-0 z-40 w-full bg-white/95 dark:bg-[#0a0d14]/95 backdrop-blur-md border-b border-slate-200/80 dark:border-white/10 transition-colors">
+        <div className="max-w-6xl mx-auto px-2.5 sm:px-6 h-16 flex items-center justify-between gap-1.5 sm:gap-3">
           
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 min-w-0 flex-1 lg:flex-initial">
             {/* Hamburger Button visible on mobile AND tablet (< 1024px) to prevent collisions */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label={t.openMenu}
-              className="lg:hidden p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
+              className="lg:hidden p-1.5 sm:p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors shrink-0"
             >
               <Menu className="w-5 h-5" />
             </button>
 
-            {/* Logo & Brand: Clicking Logo returns to catalog, identical layout on mobile & desktop */}
+            {/* Logo & Brand: Clicking Logo returns to catalog, compact on narrow mobile */}
             <button
               type="button"
               onClick={() => navigateTo('catalog')}
-              className="flex items-center gap-2.5 focus-visible:outline-none text-left cursor-pointer active:scale-95 transition-transform"
+              className="flex items-center gap-2 sm:gap-2.5 min-w-0 focus-visible:outline-none text-left cursor-pointer active:scale-95 transition-transform"
               aria-label={t.toCatalogAria}
             >
-              <div className="h-9 w-24 sm:h-10 sm:w-28 rounded-xl overflow-hidden bg-[#490203] border border-[#d4af5a]/40 shadow-sm shrink-0">
+              <div className="h-8 w-16 sm:h-10 sm:w-28 rounded-xl overflow-hidden bg-[#490203] border border-[#d4af5a]/40 shadow-sm shrink-0">
                 <img
                   src={logoSrc}
                   alt={SITE_INFO.shopName}
                   className="w-full h-full object-cover object-center scale-125"
-                  onError={(e) => { (e.currentTarget.parentElement as HTMLElement).style.display = 'none'; }}
                 />
               </div>
-              <div className="flex flex-col">
-                <span className="text-lg sm:text-xl font-black tracking-tight text-[#7a0f2d] dark:text-[#ffead1] transition-colors leading-tight">
+              <div className="flex flex-col min-w-0">
+                <span className="text-base sm:text-xl font-black tracking-tight text-[#7a0f2d] dark:text-[#ffead1] transition-colors leading-tight truncate">
                   {SITE_INFO.shopName}
                 </span>
-                <span className="text-[9px] sm:text-[10px] uppercase tracking-wider font-semibold text-slate-500 dark:text-[#ffead1]/70 leading-none">
+                <span className="text-[8px] sm:text-[10px] uppercase tracking-wide sm:tracking-wider font-semibold text-slate-500 dark:text-[#ffead1]/70 leading-none truncate">
                   {t.brandSubtitle}
                 </span>
               </div>
@@ -804,7 +805,7 @@ export default function App() {
           </nav>
 
           {/* Header Actions */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
             {/* Language Switcher (РУС / ҚАЗ) */}
             <div
               className="inline-flex p-0.5 rounded-xl bg-slate-100 dark:bg-white/10 border border-slate-200/80 dark:border-white/10"
@@ -814,7 +815,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => handleSelectLang('ru')}
-                className={`px-2 py-1 rounded-lg text-[10px] sm:text-xs font-black transition-all cursor-pointer ${
+                className={`px-1.5 sm:px-2 py-1 rounded-lg text-[10px] sm:text-xs font-black transition-all cursor-pointer ${
                   lang === 'ru'
                     ? 'bg-[#7a0f2d] text-[#ffead1] shadow-2xs'
                     : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
@@ -825,7 +826,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => handleSelectLang('kk')}
-                className={`px-2 py-1 rounded-lg text-[10px] sm:text-xs font-black transition-all cursor-pointer ${
+                className={`px-1.5 sm:px-2 py-1 rounded-lg text-[10px] sm:text-xs font-black transition-all cursor-pointer ${
                   lang === 'kk'
                     ? 'bg-[#7a0f2d] text-[#ffead1] shadow-2xs'
                     : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white'
@@ -840,7 +841,7 @@ export default function App() {
               onClick={handleToggleTheme}
               aria-label={t.toggleTheme}
               title={isDark ? t.themeToLight : t.themeToDark}
-              className="p-2 rounded-xl text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
+              className="p-1.5 sm:p-2 rounded-xl text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
             >
               {isDark ? <Sun className="w-4 h-4 text-amber-300" /> : <Moon className="w-4 h-4 text-[#7a0f2d]" />}
             </button>
@@ -848,13 +849,13 @@ export default function App() {
             {/* Cart Button with Count Badge */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-2 sm:px-3 sm:py-1.5 rounded-xl bg-[#ffead1]/40 hover:bg-[#ffead1]/70 dark:bg-white/10 dark:hover:bg-white/15 text-[#2a1a1f] dark:text-[#ffead1] transition-all flex items-center gap-2 font-semibold text-xs sm:text-sm border border-[#7a0f2d]/15 dark:border-white/10"
+              className="relative p-1.5 sm:px-3 sm:py-1.5 rounded-xl bg-[#ffead1]/40 hover:bg-[#ffead1]/70 dark:bg-white/10 dark:hover:bg-white/15 text-[#2a1a1f] dark:text-[#ffead1] transition-all flex items-center gap-1.5 sm:gap-2 font-semibold text-xs sm:text-sm border border-[#7a0f2d]/15 dark:border-white/10"
               aria-label={t.openCartAria}
             >
               <ShoppingCart className="w-4 h-4 text-[#7a0f2d] dark:text-[#ffead1]" />
               <span className="hidden sm:inline">{t.cartLabel}</span>
               {cartTotals.totalCount > 0 && (
-                <span className="px-1.5 py-0.5 text-[11px] font-black rounded-full bg-[#7a0f2d] text-[#ffead1]">
+                <span className="px-1.5 py-0.5 text-[10px] sm:text-[11px] font-black rounded-full bg-[#7a0f2d] text-[#ffead1]">
                   {cartTotals.totalCount}
                 </span>
               )}
@@ -1374,16 +1375,17 @@ export default function App() {
                 if (activeSim) specParts.push(activeSim === 'ESIM' ? 'eSIM' : 'SIM');
                 if (activeSize) specParts.push(activeSize);
                 if (activeColor) specParts.push(localizeColorName(activeColor.name, lang).split(' (')[0]);
-                const specSubtitle = specParts.length > 0 ? specParts.join(' · ') : localizeSubcategory(model.subcategory, lang);
                 const localizedModelName = localizeProductName(model.name, lang);
+                const localizedSubtitle = localizeProductSubtitle(model.subtitle, lang);
                 const localizedColorLabel = activeColor ? localizeColorName(activeColor.name, lang) : undefined;
+                const specSubtitle = specParts.length > 0 ? specParts.join(' · ') : (localizedSubtitle || localizeSubcategory(model.subcategory, lang));
 
                 return (
                   <div
                     key={model.id}
-                    className="rounded-2xl bg-white dark:bg-[#121622] border border-slate-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all flex flex-col justify-between overflow-hidden group"
+                    className="rounded-2xl bg-white dark:bg-[#121622] border border-slate-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all flex flex-col justify-between min-w-0 overflow-hidden group"
                   >
-                    <div>
+                    <div className="min-w-0">
                       {/* Product Photo Container: Compact size, rounded corners, pure white background */}
                       <div className="w-full h-52 sm:h-56 bg-white dark:bg-white p-5 flex items-center justify-center overflow-hidden border-b border-slate-100 dark:border-slate-100 relative rounded-t-2xl">
                         <div className="w-full h-full flex items-center justify-center bg-white rounded-2xl p-1">
@@ -1395,7 +1397,7 @@ export default function App() {
                           />
                         </div>
                         {localizedColorLabel && (
-                          <span className="absolute bottom-2.5 right-2.5 text-[10px] font-bold tracking-wide px-2.5 py-0.5 rounded-full bg-slate-900/85 backdrop-blur-xs text-white border border-white/20 shadow-2xs pointer-events-none">
+                          <span className="absolute bottom-2.5 right-2.5 z-20 max-w-[calc(100%-1.25rem)] truncate text-[10px] font-bold tracking-wide px-2.5 py-0.5 rounded-full bg-slate-900/85 backdrop-blur-xs text-white border border-white/20 shadow-2xs pointer-events-none">
                             {localizedColorLabel}
                           </span>
                         )}
@@ -1417,6 +1419,11 @@ export default function App() {
                           <h3 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white leading-snug pt-0.5">
                             {localizedModelName}
                           </h3>
+                          {localizedSubtitle && (
+                            <p className="text-xs font-medium text-slate-500 dark:text-slate-400 leading-snug">
+                              {localizedSubtitle}
+                            </p>
+                          )}
                         </div>
 
                         {/* SELECTOR: COLOR SELECTION WITH COMPACT ROUNDED WHITE THUMBNAILS */}
@@ -1447,16 +1454,23 @@ export default function App() {
                                     }`}
                                   >
                                     <div className="w-11 h-11 sm:w-12 sm:h-12 bg-white flex items-center justify-center relative rounded-xl p-1 overflow-hidden shadow-2xs">
-                                      <img
-                                        src={col.image}
-                                        alt={colNameLoc}
-                                        loading="lazy"
-                                        className="w-full h-full object-contain rounded-lg transition-transform duration-300 group-hover/color:scale-110"
-                                        onError={(e) => {
-                                          (e.currentTarget as HTMLElement).style.display = 'none';
-                                        }}
-                                      />
-                                      {col.hex && (
+                                      {col.image ? (
+                                        <img
+                                          src={col.image}
+                                          alt={colNameLoc}
+                                          loading="lazy"
+                                          className="w-full h-full object-contain rounded-lg transition-transform duration-300 group-hover/color:scale-110"
+                                          onError={(e) => {
+                                            (e.currentTarget as HTMLElement).style.display = 'none';
+                                          }}
+                                        />
+                                      ) : (
+                                        <span
+                                          className="w-7 h-7 rounded-full border border-slate-200 shadow-inner"
+                                          style={{ backgroundColor: col.hex || '#e2e8f0' }}
+                                        />
+                                      )}
+                                      {col.hex && col.image && (
                                         <span
                                           className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border-2 border-white absolute bottom-0.5 right-0.5 shadow-sm pointer-events-none"
                                           style={{ backgroundColor: col.hex }}
@@ -1601,7 +1615,7 @@ export default function App() {
                         </div>
 
                         <div className="text-center sm:text-left flex-1 px-1 min-w-0">
-                          <span className="font-black font-mono text-base sm:text-base md:text-lg xl:text-xl text-[#2a1a1f] whitespace-nowrap block truncate">
+                          <span className="font-black font-mono text-sm sm:text-base md:text-lg xl:text-xl text-[#2a1a1f] whitespace-nowrap block truncate">
                             {kaspiPrice !== null ? formatPrice(kaspiPrice) : t.onRequest}
                           </span>
                         </div>
@@ -1609,13 +1623,13 @@ export default function App() {
                         <div className="shrink-0 text-right leading-tight space-y-0.5">
                           <div className="flex items-center justify-end gap-1 sm:gap-1.5 text-right">
                             <span className="text-[10px] sm:text-xs text-[#8a7267] font-semibold">{t.months12}</span>
-                            <span className="font-black text-xs sm:text-xs xl:text-sm text-[#7a0f2d] font-mono whitespace-nowrap">
+                            <span className="font-black text-[11px] sm:text-xs xl:text-sm text-[#7a0f2d] font-mono whitespace-nowrap">
                               {kaspi12 !== null ? formatPrice(kaspi12).replace(' ₸', '') : '—'}
                             </span>
                           </div>
                           <div className="flex items-center justify-end gap-1 sm:gap-1.5 text-right">
                             <span className="text-[10px] sm:text-xs text-[#8a7267] font-semibold">{t.months24}</span>
-                            <span className="font-black text-xs sm:text-xs xl:text-sm text-[#7a0f2d] font-mono whitespace-nowrap">
+                            <span className="font-black text-[11px] sm:text-xs xl:text-sm text-[#7a0f2d] font-mono whitespace-nowrap">
                               {kaspi24 !== null ? formatPrice(kaspi24).replace(' ₸', '') : '—'}
                             </span>
                           </div>
@@ -1642,7 +1656,7 @@ export default function App() {
                         </div>
 
                         <div className="text-center sm:text-left flex-1 px-1 min-w-0">
-                          <span className="font-black font-mono text-base sm:text-base md:text-lg xl:text-xl text-[#2a1a1f] whitespace-nowrap block truncate">
+                          <span className="font-black font-mono text-sm sm:text-base md:text-lg xl:text-xl text-[#2a1a1f] whitespace-nowrap block truncate">
                             {halykPrice !== null ? formatPrice(halykPrice) : t.onRequest}
                           </span>
                         </div>
@@ -1650,13 +1664,13 @@ export default function App() {
                         <div className="shrink-0 text-right leading-tight space-y-0.5">
                           <div className="flex items-center justify-end gap-1 sm:gap-1.5 text-right">
                             <span className="text-[10px] sm:text-xs text-[#8a7267] font-semibold">{t.months12}</span>
-                            <span className="font-black text-xs sm:text-xs xl:text-sm text-[#7a0f2d] font-mono whitespace-nowrap">
+                            <span className="font-black text-[11px] sm:text-xs xl:text-sm text-[#7a0f2d] font-mono whitespace-nowrap">
                               {halyk12 !== null ? formatPrice(halyk12).replace(' ₸', '') : '—'}
                             </span>
                           </div>
                           <div className="flex items-center justify-end gap-1 sm:gap-1.5 text-right">
                             <span className="text-[10px] sm:text-xs text-[#8a7267] font-semibold">{t.months24}</span>
-                            <span className="font-black text-xs sm:text-xs xl:text-sm text-[#7a0f2d] font-mono whitespace-nowrap">
+                            <span className="font-black text-[11px] sm:text-xs xl:text-sm text-[#7a0f2d] font-mono whitespace-nowrap">
                               {halyk24 !== null ? formatPrice(halyk24).replace(' ₸', '') : '—'}
                             </span>
                           </div>
@@ -1684,7 +1698,7 @@ export default function App() {
                             </span>
                           </div>
                           <div className="mt-2.5">
-                            <span className="font-black font-mono text-sm sm:text-base md:text-lg text-white block whitespace-nowrap leading-none truncate">
+                            <span className="font-black font-mono text-[13px] sm:text-base md:text-lg text-white block whitespace-nowrap leading-none truncate">
                               {promoPrice !== null ? formatPrice(promoPrice) : t.onRequest}
                             </span>
                           </div>
@@ -1709,7 +1723,7 @@ export default function App() {
                             </span>
                           </div>
                           <div className="mt-2.5">
-                            <span className="font-black font-mono text-sm sm:text-base md:text-lg text-white block whitespace-nowrap leading-none truncate">
+                            <span className="font-black font-mono text-[13px] sm:text-base md:text-lg text-white block whitespace-nowrap leading-none truncate">
                               {cashPrice !== null ? formatPrice(cashPrice) : t.onRequest}
                             </span>
                           </div>
@@ -1797,10 +1811,10 @@ export default function App() {
           <button
             type="button"
             onClick={() => navigateTo('valuation')}
-            className="shrink-0 px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 dark:bg-amber-400 dark:hover:bg-amber-300 text-slate-950 font-extrabold text-sm shadow-md transition-all active:scale-95 flex items-center gap-2 cursor-pointer whitespace-nowrap"
+            className="shrink-0 w-full md:w-auto px-6 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 dark:bg-amber-400 dark:hover:bg-amber-300 text-slate-950 font-extrabold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer text-center md:whitespace-nowrap"
           >
             <span>{t.tradeInBannerBtn}</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 shrink-0" />
           </button>
         </div>
 
@@ -1824,7 +1838,7 @@ export default function App() {
                   <img
                     src={founderSrc}
                     alt={SITE_INFO.founder?.name || 'Аружан Жеткерген'}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover object-top brightness-110 contrast-[1.03] group-hover:scale-105 transition-transform duration-700"
                     onError={(e) => {
                       (e.target as HTMLElement).style.display = 'none';
                       const fallback = document.getElementById('founder-gradient-avatar');
@@ -1844,8 +1858,8 @@ export default function App() {
                     <span className="text-[10px] text-[#ffead1]/80 font-bold mt-0.5">@zaagaru</span>
                   </div>
 
-                  {/* Aesthetic Bottom Gradient Fade */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent pointer-events-none" />
+                  {/* Subtle Bottom Edge Gradient Only Behind Badge */}
+                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/65 via-black/20 to-transparent pointer-events-none" />
 
                   {/* Floating Identity Badge on Photo */}
                   <div className="absolute bottom-2.5 left-2.5 right-2.5 pointer-events-none">
@@ -1896,7 +1910,7 @@ export default function App() {
             </div>
 
             {/* Social Cards / Links */}
-            <div className="w-full lg:w-auto flex flex-col sm:flex-row lg:flex-col gap-2.5 shrink-0 min-w-[270px]">
+            <div className="w-full lg:w-auto flex flex-col sm:flex-row lg:flex-col gap-2.5 shrink-0 lg:min-w-[270px]">
               <a
                 href="https://www.tiktok.com/@_zaag_"
                 target="_blank"
@@ -2146,9 +2160,9 @@ export default function App() {
                 href={`https://wa.me/${SITE_INFO.whatsapp}?text=${encodeURIComponent(t.waGeneralQuestionMsg)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs sm:text-sm transition-all shadow-sm flex items-center justify-center gap-2 shrink-0 active:scale-95 whitespace-nowrap w-full sm:w-auto"
+                className="px-4 sm:px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs sm:text-sm transition-all shadow-sm flex items-center justify-center gap-2 shrink-0 active:scale-95 text-center sm:whitespace-nowrap w-full sm:w-auto"
               >
-                <MessageCircle className="w-4 h-4 fill-current" />
+                <MessageCircle className="w-4 h-4 fill-current shrink-0" />
                 <span>{t.askWaBtn}</span>
               </a>
             </div>
@@ -2173,9 +2187,9 @@ export default function App() {
                 href={`https://t.me/${SITE_INFO.telegram}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-xl bg-[#229ED9] hover:bg-[#1e8ec3] text-white font-bold text-xs sm:text-sm transition-all shadow-sm flex items-center justify-center gap-2 shrink-0 active:scale-95 whitespace-nowrap w-full sm:w-auto"
+                className="px-4 sm:px-5 py-2.5 rounded-xl bg-[#229ED9] hover:bg-[#1e8ec3] text-white font-bold text-xs sm:text-sm transition-all shadow-sm flex items-center justify-center gap-2 shrink-0 active:scale-95 text-center sm:whitespace-nowrap w-full sm:w-auto"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-4 h-4 shrink-0" />
                 <span>{t.tgUsedBtn}</span>
               </a>
             </div>
@@ -2199,9 +2213,9 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => navigateTo('valuation')}
-                className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-sm flex items-center justify-center gap-2 shrink-0 active:scale-95 whitespace-nowrap w-full sm:w-auto cursor-pointer"
+                className="px-4 sm:px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-sm flex items-center justify-center gap-2 shrink-0 active:scale-95 text-center sm:whitespace-nowrap w-full sm:w-auto cursor-pointer"
               >
-                <RefreshCw className="w-4 h-4" />
+                <RefreshCw className="w-4 h-4 shrink-0" />
                 <span>{t.calcOnlineBtn}</span>
               </button>
             </div>
@@ -2754,7 +2768,7 @@ export default function App() {
                     <div className="mb-5">
                       {calculation.canBuy ? (
                         <div>
-                          <div className="text-4xl sm:text-5xl font-black tracking-tight text-[#7a0f2d] dark:text-emerald-400 font-mono">
+                          <div className="text-3xl sm:text-5xl font-black tracking-tight text-[#7a0f2d] dark:text-emerald-400 font-mono break-words">
                             {formatPrice(calculation.price)}
                           </div>
                           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1.5 leading-snug">
@@ -3013,9 +3027,9 @@ export default function App() {
                 href={`https://t.me/${SITE_INFO.telegram}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="shrink-0 px-6 py-3.5 rounded-2xl bg-[#229ED9] hover:bg-[#1a8bc0] text-white font-extrabold text-sm shadow-md transition-all active:scale-95 flex items-center gap-2 cursor-pointer whitespace-nowrap"
+                className="shrink-0 w-full md:w-auto px-6 py-3.5 rounded-2xl bg-[#229ED9] hover:bg-[#1a8bc0] text-white font-extrabold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer text-center md:whitespace-nowrap"
               >
-                <Send className="w-4 h-4" />
+                <Send className="w-4 h-4 shrink-0" />
                 <span>{t.goToTg} @{SITE_INFO.telegram} ↗</span>
               </a>
             </div>
@@ -3041,10 +3055,10 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => navigateTo('catalog')}
-                className="shrink-0 px-6 py-3 rounded-2xl bg-[#7a0f2d] hover:bg-[#8e1236] text-[#ffead1] font-extrabold text-sm shadow-md transition-all active:scale-95 flex items-center gap-2 cursor-pointer whitespace-nowrap"
+                className="shrink-0 w-full md:w-auto px-6 py-3 rounded-2xl bg-[#7a0f2d] hover:bg-[#8e1236] text-[#ffead1] font-extrabold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center gap-2 cursor-pointer text-center md:whitespace-nowrap"
               >
                 <span>{t.goToCatalogBtn}</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 shrink-0" />
               </button>
             </div>
           </>
@@ -3056,15 +3070,15 @@ export default function App() {
       {/* ====================================================================== */}
       <footer className="mt-12 border-t border-slate-200/80 dark:border-white/10 bg-white dark:bg-[#0a0d14] py-8 text-xs text-slate-500 dark:text-slate-400 transition-colors">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-24 sm:w-28 rounded-xl overflow-hidden bg-[#490203] border border-[#d4af5a]/40 shadow-xs shrink-0">
+          <div className="flex items-center gap-3 min-w-0 max-w-full">
+            <div className="h-9 w-20 sm:h-10 sm:w-28 rounded-xl overflow-hidden bg-[#490203] border border-[#d4af5a]/40 shadow-xs shrink-0">
               <img
                 src={logoSrc}
                 alt="BYLANCE — Байланыста Zaagaru"
                 className="w-full h-full object-cover object-center scale-125"
               />
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 min-w-0">
               <span className="font-black text-[#7a0f2d] dark:text-[#ffead1] text-sm">
                 {SITE_INFO.shopName}
               </span>
@@ -3073,7 +3087,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs font-semibold">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 text-xs font-semibold">
             <button
               type="button"
               onClick={() => navigateTo('catalog')}
@@ -3122,14 +3136,14 @@ export default function App() {
       {/* ====================================================================== */}
       <nav
         aria-label={t.navCatalog}
-        className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0c101a]/95 backdrop-blur-md border-t border-slate-200/80 dark:border-white/10 shadow-2xl px-2 sm:px-6 py-2 transition-colors md:hidden"
+        className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#0c101a]/95 backdrop-blur-md border-t border-slate-200/80 dark:border-white/10 shadow-2xl px-1.5 sm:px-6 py-2 transition-colors md:hidden"
       >
         <div className="max-w-xl mx-auto flex items-center justify-around gap-1 sm:gap-2">
           {/* 1. Каталог */}
           <button
             type="button"
             onClick={() => navigateTo('catalog')}
-            className={`flex-1 py-1 px-2 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-center transition-all cursor-pointer ${
+            className={`flex-1 min-w-0 py-1 px-1 sm:px-2 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-center transition-all cursor-pointer ${
               activePage === 'catalog'
                 ? 'text-[#7a0f2d] dark:text-[#ffead1] font-black'
                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold'
@@ -3144,14 +3158,14 @@ export default function App() {
             >
               <ShoppingCart className="w-5 h-5" />
             </div>
-            <span className="text-[11px] sm:text-xs tracking-tight">{t.navCatalog}</span>
+            <span className="text-[11px] sm:text-xs tracking-tight truncate max-w-full">{t.navCatalog}</span>
           </button>
 
           {/* 2. Оценка iPhone */}
           <button
             type="button"
             onClick={() => navigateTo('valuation')}
-            className={`flex-1 py-1 px-2 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-center transition-all cursor-pointer ${
+            className={`flex-1 min-w-0 py-1 px-1 sm:px-2 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-center transition-all cursor-pointer ${
               activePage === 'valuation'
                 ? 'text-amber-600 dark:text-amber-400 font-black'
                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold'
@@ -3166,14 +3180,14 @@ export default function App() {
             >
               <RefreshCw className="w-5 h-5" />
             </div>
-            <span className="text-[11px] sm:text-xs tracking-tight">{t.navValuationShort}</span>
+            <span className="text-[11px] sm:text-xs tracking-tight truncate max-w-full">{t.navValuationShort}</span>
           </button>
 
           {/* 3. Корзина */}
           <button
             type="button"
             onClick={() => setIsCartOpen(true)}
-            className="flex-1 py-1 px-2 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold transition-all cursor-pointer relative"
+            className="flex-1 min-w-0 py-1 px-1 sm:px-2 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold transition-all cursor-pointer relative"
           >
             <div className="relative">
               <div className="p-1.5 rounded-xl">
@@ -3185,7 +3199,7 @@ export default function App() {
                 </span>
               )}
             </div>
-            <span className="text-[11px] sm:text-xs tracking-tight">
+            <span className="text-[11px] sm:text-xs tracking-tight truncate max-w-full">
               {cartTotals.totalCount > 0 ? (
                 <span className="font-bold text-[#7a0f2d] dark:text-[#ffead1] font-mono">
                   {cartTotals.totalPrice > 0 ? formatPrice(cartTotals.totalPrice) : t.cartLabel}
@@ -3201,12 +3215,12 @@ export default function App() {
             href={`https://wa.me/${SITE_INFO.whatsapp}?text=${encodeURIComponent(t.waDefaultConsult)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 py-1 px-2 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-center text-slate-500 dark:text-slate-400 hover:text-[#25D366] font-semibold transition-all"
+            className="flex-1 min-w-0 py-1 px-1 sm:px-2 rounded-2xl flex flex-col items-center justify-center gap-0.5 text-center text-slate-500 dark:text-slate-400 hover:text-[#25D366] font-semibold transition-all"
           >
             <div className="p-1.5 rounded-xl text-[#25D366]">
               <MessageCircle className="w-5 h-5 fill-current" />
             </div>
-            <span className="text-[11px] sm:text-xs tracking-tight">WhatsApp</span>
+            <span className="text-[11px] sm:text-xs tracking-tight truncate max-w-full">WhatsApp</span>
           </a>
         </div>
       </nav>
@@ -3305,7 +3319,7 @@ export default function App() {
                               {t.colorPrefix} {localizeColorName(item.colorName, lang)}
                             </div>
                           )}
-                          <div className="text-[11px] text-slate-400 mt-0.5 whitespace-nowrap">
+                          <div className="text-[11px] text-slate-400 mt-0.5 break-words">
                             {unitPrice !== null && unitPrice !== undefined
                               ? `${formatPrice(unitPrice)} ${t.perPieceSuffix}`
                               : t.onRequest}

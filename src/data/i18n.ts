@@ -499,7 +499,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
   },
   kk: {
     pageTitle: 'Bylance — Алматыдағы түпнұсқа техника және iPhone бағалау',
-    brandSubtitle: 'Алматыдағы түпнұсқа техника',
+    brandSubtitle: 'Алматыдағы техника',
     openMenu: 'Мәзірді ашу',
     toCatalogAria: 'Bylance каталогына өту',
     navCatalog: 'Каталог',
@@ -885,6 +885,7 @@ const COLOR_KK_MAP: Record<string, string> = {
   'Prussian Blue (Синий индиго)': 'Prussian Blue (Индиго көк)',
   'Red Velvet (Красный бархат)': 'Red Velvet (Қызыл барқыт)',
   'Jasper Plum (Яшмовая слива)': 'Jasper Plum (Қою күлгін)',
+  'Chocolate (Шоколадный)': 'Chocolate (Шоколад түстес)',
   'Apricot (Абрикосовый)': 'Apricot (Шабдалы түстес)',
   'Nickel / Copper (Никель и медь)': 'Nickel / Copper (Никель мен мыс)',
   'Strawberry Bronze (Клубничная бронза)': 'Strawberry Bronze (Қола қызғылт)',
@@ -904,12 +905,21 @@ export function localizeProductName(name: string, lang: Lang): string {
     .replace('(базовый)', '(базалық)')
     .replace('(новый)', '(жаңа)')
     .replace('с беспроводной зарядкой', 'сымсыз қуатталатын')
+    .replace('хамелеон очки с бриллиантом', 'гауһар тасты хамелеон көзілдірік')
     .replace(' серый', ' сұр')
     .replace(' черный', ' қара')
     .replace(' лимит', ' лимит')
     .replace('Яндекс станция лайт2', 'Яндекс Станция Лайт 2')
     .replace('Яндекс станция Стрит', 'Яндекс Станция Стрит')
     .replace('Яндекс станция Миди', 'Яндекс Станция Миди');
+}
+
+export function localizeProductSubtitle(subtitle: string | undefined, lang: Lang): string | undefined {
+  if (!subtitle || lang === 'ru') return subtitle;
+  if (subtitle === 'В помещении прозрачные / на солнце темнеют') {
+    return 'Бөлмеде мөлдір · күн сәулесінде қараяды';
+  }
+  return subtitle;
 }
 
 export function localizeSubcategory(subcat: string, lang: Lang): string {

@@ -4,7 +4,7 @@
  * ============================================================================
  * Модели с выбором памяти и SIM, 4 способа оплаты, полный каталог.
  */
-import { PRODUCT_IMAGES, WEBP_IMAGES } from './productImages';
+import { WEBP_IMAGES } from './productImages';
 
 export interface StoreAddress {
   id: string;
@@ -66,7 +66,7 @@ export const SITE_INFO = {
   founder: {
     name: "Аружан Жеткерген",
     role: "Основательница магазина Bylance",
-    image: "/aruzhan.jpg",
+    image: "/aruzhan_profile.webp",
     instagram: "zaagaru",
     tiktok: "_zaag_",
     shopInstagram: "bylance_kz",
@@ -185,13 +185,6 @@ export const IPHONE_17_COLORS: ProductColor[] = [
   { id: 'black', name: 'Black (Чёрный)', hex: '#222326', image: WEBP_IMAGES.iphone17Black },
 ];
 
-export const IPHONE_17_AIR_COLORS: ProductColor[] = [
-  { id: 'sky-blue', name: 'Sky Blue (Небесно-голубой)', hex: '#9dc2df', image: PRODUCT_IMAGES.iphoneWhite },
-  { id: 'light-gold', name: 'Light Gold (Светло-золотистый)', hex: '#ebd9b5', image: PRODUCT_IMAGES.iphoneDesert },
-  { id: 'cloud-white', name: 'Cloud White (Облачно-белый)', hex: '#f5f5f7', image: PRODUCT_IMAGES.iphoneWhite },
-  { id: 'space-black', name: 'Space Black (Космический чёрный)', hex: '#1d1e20', image: PRODUCT_IMAGES.iphoneBlack },
-];
-
 export const IPHONE_17_PRO_COLORS: ProductColor[] = [
   { id: 'cosmic-orange', name: 'Cosmic Orange (Космический оранжевый)', hex: '#d96c34', image: WEBP_IMAGES.iphone17ProOrange },
   { id: 'deep-blue', name: 'Deep Blue (Глубокий синий)', hex: '#24374e', image: WEBP_IMAGES.iphone17ProBlue },
@@ -249,28 +242,17 @@ export const IPAD_COLORS: ProductColor[] = IPAD_AIR_M4_COLORS;
 export const MACBOOK_COLORS: ProductColor[] = MACBOOK_AIR_M5_COLORS;
 export const WATCH_COLORS: ProductColor[] = WATCH_11_COLORS;
 
-export const DYSON_COLOR_CERAMIC_PINK: ProductColor = { id: 'ceramic-pink', name: 'Ceramic Pink (Керамический розовый)', hex: '#dfa8a8', image: PRODUCT_IMAGES.dyson };
-export const DYSON_COLOR_PRUSSIAN_BLUE: ProductColor = { id: 'prussian-blue', name: 'Prussian Blue (Синий индиго)', hex: '#26384a', image: PRODUCT_IMAGES.dyson };
-export const DYSON_COLOR_RED_VELVET: ProductColor = { id: 'red-velvet', name: 'Red Velvet (Красный бархат)', hex: '#7a0f2d', image: PRODUCT_IMAGES.dyson };
-export const DYSON_COLOR_JASPER_PLUM: ProductColor = { id: 'jasper-plum', name: 'Jasper Plum (Яшмовая слива)', hex: '#582f42', image: PRODUCT_IMAGES.dyson };
-export const DYSON_COLOR_APRICOT: ProductColor = { id: 'apricot', name: 'Apricot (Абрикосовый)', hex: '#e8926b', image: PRODUCT_IMAGES.dyson };
-export const DYSON_COLOR_NICKEL_COPPER: ProductColor = { id: 'nickel-copper', name: 'Nickel / Copper (Никель и медь)', hex: '#907f76', image: PRODUCT_IMAGES.dyson };
-export const DYSON_COLOR_STRAWBERRY: ProductColor = { id: 'strawberry-bronze', name: 'Strawberry Bronze (Клубничная бронза)', hex: '#c9826f', image: PRODUCT_IMAGES.dyson };
-
-export const DYSON_COLORS: ProductColor[] = [
-  DYSON_COLOR_CERAMIC_PINK,
-  DYSON_COLOR_PRUSSIAN_BLUE,
-  DYSON_COLOR_RED_VELVET,
-  DYSON_COLOR_JASPER_PLUM,
-  DYSON_COLOR_APRICOT,
-  DYSON_COLOR_STRAWBERRY,
-  DYSON_COLOR_NICKEL_COPPER,
-];
+export const DYSON_COLOR_CERAMIC_PINK: ProductColor = { id: 'ceramic-pink', name: 'Ceramic Pink (Керамический розовый)', hex: '#dfa8a8', image: WEBP_IMAGES.dysonAirwrapCeramicPink };
+export const DYSON_COLOR_PRUSSIAN_BLUE: ProductColor = { id: 'prussian-blue', name: 'Prussian Blue (Синий индиго)', hex: '#26384a', image: WEBP_IMAGES.dysonAirwrapPrussianBlue };
+export const DYSON_COLOR_RED_VELVET: ProductColor = { id: 'red-velvet', name: 'Red Velvet (Красный бархат)', hex: '#7a0f2d', image: WEBP_IMAGES.dysonAirwrapRedVelvet };
+export const DYSON_COLOR_JASPER_PLUM: ProductColor = { id: 'jasper-plum', name: 'Jasper Plum (Яшмовая слива)', hex: '#582f42', image: WEBP_IMAGES.dysonCoandaJasperPlum };
+export const DYSON_COLOR_CHOCOLATE: ProductColor = { id: 'chocolate', name: 'Chocolate (Шоколадный)', hex: '#5b3428', image: WEBP_IMAGES.dysonAirwrapChocolate };
 
 // МОДЕЛЬ ТОВАРА (ГРУППА С ВЫБОРОМ ПАМЯТИ/SIM/ЦВЕТА)
 export interface ProductModel {
   id: string;
   name: string;
+  subtitle?: string;
   category: MainCategory;
   subcategory: string;
   badge?: string; // Никакого "Топ продаж" над телефонами!
@@ -916,11 +898,10 @@ export const PRODUCT_MODELS: ProductModel[] = [
     category: 'dyson',
     subcategory: 'Airstrait HT01',
     warranty: '1 год официальной гарантии',
-    image: PRODUCT_IMAGES.dyson,
+    image: WEBP_IMAGES.dysonAirstraitCeramicPink,
     colorOptions: [
-      DYSON_COLOR_PRUSSIAN_BLUE,
-      DYSON_COLOR_NICKEL_COPPER,
-      DYSON_COLOR_STRAWBERRY,
+      { id: 'ceramic-pink', name: 'Ceramic Pink (Керамический розовый)', hex: '#dfa8a8', image: WEBP_IMAGES.dysonAirstraitCeramicPink },
+      { id: 'chocolate', name: 'Chocolate (Шоколадный)', hex: '#5b3428', image: WEBP_IMAGES.dysonAirstraitChocolate },
     ],
     variants: [
       {
@@ -935,28 +916,12 @@ export const PRODUCT_MODELS: ProductModel[] = [
   // 18. DYSON AIRWRAP HS08
   // ==========================================
   {
-    id: 'model-dyson-hs08-pink',
-    name: 'Dyson HS08 Airwrap Ceramic Pink',
-    category: 'dyson',
-    subcategory: 'Airwrap HS08',
-    warranty: '1 год официальной гарантии',
-    image: PRODUCT_IMAGES.dyson,
-    colorOptions: [DYSON_COLOR_CERAMIC_PINK],
-    variants: [
-      {
-        id: 'dyson-hs08-pink',
-        fullName: 'Dyson HS08 Airwrap Ceramic Pink',
-        prices: { kaspi: 318000, halyk: 331250, promo: 275000, cash: 265000 },
-      },
-    ],
-  },
-  {
     id: 'model-dyson-hs08-blue',
     name: 'Dyson HS08 Airwrap Prussian Blue',
     category: 'dyson',
     subcategory: 'Airwrap HS08',
     warranty: '1 год официальной гарантии',
-    image: PRODUCT_IMAGES.dyson,
+    image: WEBP_IMAGES.dysonAirwrapPrussianBlue,
     colorOptions: [DYSON_COLOR_PRUSSIAN_BLUE],
     variants: [
       {
@@ -967,12 +932,28 @@ export const PRODUCT_MODELS: ProductModel[] = [
     ],
   },
   {
+    id: 'model-dyson-hs08-pink',
+    name: 'Dyson HS08 Airwrap Ceramic Pink',
+    category: 'dyson',
+    subcategory: 'Airwrap HS08',
+    warranty: '1 год официальной гарантии',
+    image: WEBP_IMAGES.dysonAirwrapCeramicPink,
+    colorOptions: [DYSON_COLOR_CERAMIC_PINK],
+    variants: [
+      {
+        id: 'dyson-hs08-pink',
+        fullName: 'Dyson HS08 Airwrap Ceramic Pink',
+        prices: { kaspi: 318000, halyk: 331250, promo: 275000, cash: 265000 },
+      },
+    ],
+  },
+  {
     id: 'model-dyson-hs08-red',
     name: 'Dyson HS08 Airwrap Red Velvet',
     category: 'dyson',
     subcategory: 'Airwrap HS08',
     warranty: '1 год официальной гарантии',
-    image: PRODUCT_IMAGES.dyson,
+    image: WEBP_IMAGES.dysonAirwrapRedVelvet,
     colorOptions: [DYSON_COLOR_RED_VELVET],
     variants: [
       {
@@ -982,70 +963,70 @@ export const PRODUCT_MODELS: ProductModel[] = [
       },
     ],
   },
-
-  // ==========================================
-  // 19. DYSON AIRWRAP HS09 CO-ANDA (БАЗОВЫЙ)
-  // ==========================================
   {
-    id: 'model-dyson-hs09-base-pink',
-    name: 'Dyson HS09 Co-anda (базовый) Ceramic Pink',
+    id: 'model-dyson-hs08-chocolate',
+    name: 'Dyson HS08 Airwrap Chocolate',
     category: 'dyson',
-    subcategory: 'Airwrap HS09 (Базовый)',
+    subcategory: 'Airwrap HS08',
     warranty: '1 год официальной гарантии',
-    image: PRODUCT_IMAGES.dyson,
-    colorOptions: [DYSON_COLOR_CERAMIC_PINK],
+    image: WEBP_IMAGES.dysonAirwrapChocolate,
+    colorOptions: [DYSON_COLOR_CHOCOLATE],
     variants: [
       {
-        id: 'dyson-hs09-base-pink',
-        fullName: 'Dyson HS09 Co-anda (базовый) Ceramic Pink',
-        prices: { kaspi: 384000, halyk: 400000, promo: 330000, cash: 320000 },
+        id: 'dyson-hs08-chocolate',
+        fullName: 'Dyson HS08 Airwrap Chocolate',
+        prices: { kaspi: 330000, halyk: 343750, promo: 285000, cash: 275000 },
       },
     ],
   },
+
+  // ==========================================
+  // 19. DYSON AIRWRAP HS09 CO-ANDA
+  // ==========================================
   {
     id: 'model-dyson-hs09-base-plum',
-    name: 'Dyson HS09 Co-anda (базовый) Jasper Plum',
+    name: 'Dyson HS09 Co-anda Jasper Plum',
     category: 'dyson',
-    subcategory: 'Airwrap HS09 (Базовый)',
+    subcategory: 'Airwrap HS09',
     warranty: '1 год официальной гарантии',
-    image: PRODUCT_IMAGES.dyson,
-    colorOptions: [DYSON_COLOR_JASPER_PLUM],
+    image: WEBP_IMAGES.dysonCoandaJasperPlum,
+    colorOptions: [{ ...DYSON_COLOR_JASPER_PLUM, image: WEBP_IMAGES.dysonCoandaJasperPlum }],
     variants: [
       {
         id: 'dyson-hs09-base-plum',
-        fullName: 'Dyson HS09 Co-anda (базовый) Jasper Plum',
+        fullName: 'Dyson HS09 Co-anda Jasper Plum',
         prices: { kaspi: 384000, halyk: 400000, promo: 330000, cash: 320000 },
       },
     ],
   },
   {
-    id: 'model-dyson-hs09-base-red',
-    name: 'Dyson HS09 Co-anda (базовый) Red Velvet',
+    id: 'model-dyson-hs09-base-pink',
+    name: 'Dyson HS09 Co-anda Ceramic Pink',
     category: 'dyson',
-    subcategory: 'Airwrap HS09 (Базовый)',
+    subcategory: 'Airwrap HS09',
     warranty: '1 год официальной гарантии',
-    image: PRODUCT_IMAGES.dyson,
-    colorOptions: [DYSON_COLOR_RED_VELVET],
+    image: WEBP_IMAGES.dysonCoandaCeramicPink,
+    colorOptions: [{ ...DYSON_COLOR_CERAMIC_PINK, image: WEBP_IMAGES.dysonCoandaCeramicPink }],
     variants: [
       {
-        id: 'dyson-hs09-base-red',
-        fullName: 'Dyson HS09 Co-anda (базовый) Red Velvet',
+        id: 'dyson-hs09-base-pink',
+        fullName: 'Dyson HS09 Co-anda Ceramic Pink',
         prices: { kaspi: 384000, halyk: 400000, promo: 330000, cash: 320000 },
       },
     ],
   },
   {
-    id: 'model-dyson-hs09-base-apricot',
-    name: 'Dyson HS09 Co-anda (базовый) Apricot',
+    id: 'model-dyson-hs09-base-chocolate',
+    name: 'Dyson HS09 Co-anda Chocolate',
     category: 'dyson',
-    subcategory: 'Airwrap HS09 (Базовый)',
+    subcategory: 'Airwrap HS09',
     warranty: '1 год официальной гарантии',
-    image: PRODUCT_IMAGES.dyson,
-    colorOptions: [DYSON_COLOR_APRICOT],
+    image: WEBP_IMAGES.dysonCoandaChocolate,
+    colorOptions: [{ ...DYSON_COLOR_CHOCOLATE, image: WEBP_IMAGES.dysonCoandaChocolate }],
     variants: [
       {
-        id: 'dyson-hs09-base-apricot',
-        fullName: 'Dyson HS09 Co-anda (базовый) Apricot',
+        id: 'dyson-hs09-base-chocolate',
+        fullName: 'Dyson HS09 Co-anda Chocolate',
         prices: { kaspi: 384000, halyk: 400000, promo: 330000, cash: 320000 },
       },
     ],
@@ -1060,8 +1041,8 @@ export const PRODUCT_MODELS: ProductModel[] = [
     category: 'dyson',
     subcategory: 'Airwrap HS09 (Новый)',
     warranty: '1 год официальной гарантии',
-    image: PRODUCT_IMAGES.dyson,
-    colorOptions: [DYSON_COLOR_CERAMIC_PINK],
+    image: WEBP_IMAGES.dysonCoandaCeramicPink,
+    colorOptions: [{ ...DYSON_COLOR_CERAMIC_PINK, image: WEBP_IMAGES.dysonCoandaCeramicPink }],
     variants: [
       {
         id: 'dyson-hs09-new-pink',
@@ -1076,13 +1057,49 @@ export const PRODUCT_MODELS: ProductModel[] = [
     category: 'dyson',
     subcategory: 'Airwrap HS09 (Новый)',
     warranty: '1 год официальной гарантии',
-    image: PRODUCT_IMAGES.dyson,
-    colorOptions: [DYSON_COLOR_JASPER_PLUM],
+    image: WEBP_IMAGES.dysonCoandaJasperPlum,
+    colorOptions: [{ ...DYSON_COLOR_JASPER_PLUM, image: WEBP_IMAGES.dysonCoandaJasperPlum }],
     variants: [
       {
         id: 'dyson-hs09-new-plum',
         fullName: 'Dyson HS09 Co-anda (новый) Jasper Plum',
         prices: { kaspi: 408000, halyk: 425000, promo: 350000, cash: 340000 },
+      },
+    ],
+  },
+
+  // ==========================================
+  // 20B. DYSON CORRALE
+  // ==========================================
+  {
+    id: 'model-dyson-corrale-plum',
+    name: 'Dyson Corrale Jasper Plum',
+    category: 'dyson',
+    subcategory: 'Corrale',
+    warranty: '1 год официальной гарантии',
+    image: WEBP_IMAGES.dysonCorraleJasperPlum,
+    colorOptions: [{ id: 'jasper-plum', name: 'Jasper Plum (Яшмовая слива)', hex: '#582f42', image: WEBP_IMAGES.dysonCorraleJasperPlum }],
+    variants: [
+      {
+        id: 'dyson-corrale-plum',
+        fullName: 'Dyson Corrale Jasper Plum',
+        prices: { kaspi: null, halyk: null, promo: null, cash: null },
+      },
+    ],
+  },
+  {
+    id: 'model-dyson-corrale-pink',
+    name: 'Dyson Corrale Ceramic Pink',
+    category: 'dyson',
+    subcategory: 'Corrale',
+    warranty: '1 год официальной гарантии',
+    image: WEBP_IMAGES.dysonCorraleCeramicPink,
+    colorOptions: [{ id: 'ceramic-pink', name: 'Ceramic Pink (Керамический розовый)', hex: '#dfa8a8', image: WEBP_IMAGES.dysonCorraleCeramicPink }],
+    variants: [
+      {
+        id: 'dyson-corrale-pink',
+        fullName: 'Dyson Corrale Ceramic Pink',
+        prices: { kaspi: null, halyk: null, promo: null, cash: null },
       },
     ],
   },
@@ -1122,24 +1139,6 @@ export const PRODUCT_MODELS: ProductModel[] = [
       {
         id: 'canon-g7x3-black',
         fullName: 'Фотоаппарат Canon G7 Mark3 черный',
-        prices: { kaspi: 744000, halyk: 775000, promo: 645000, cash: 620000 },
-      },
-    ],
-  },
-  {
-    id: 'model-canon-g7x3-limit',
-    name: 'Фотоаппарат Canon G7 Mark3 лимит',
-    category: 'other',
-    subcategory: 'Canon',
-    warranty: '1 год официальной гарантии',
-    image: WEBP_IMAGES.canonG7Mark3Grey,
-    colorOptions: [
-      { id: 'limit', name: 'Лимитированная серия', hex: '#b58e48', image: WEBP_IMAGES.canonG7Mark3Grey },
-    ],
-    variants: [
-      {
-        id: 'canon-g7x3-limit',
-        fullName: 'Фотоаппарат Canon G7 Mark3 лимит',
         prices: { kaspi: 744000, halyk: 775000, promo: 645000, cash: 620000 },
       },
     ],
@@ -1213,6 +1212,23 @@ export const PRODUCT_MODELS: ProductModel[] = [
     ],
   },
 
+  {
+    id: 'model-kylie-meta-chameleon',
+    name: 'Kylie&Meta хамелеон очки с бриллиантом',
+    subtitle: 'В помещении прозрачные / на солнце темнеют',
+    category: 'other',
+    subcategory: 'Meta',
+    warranty: '1 год официальной гарантии',
+    image: WEBP_IMAGES.kylieMetaChameleon,
+    variants: [
+      {
+        id: 'kylie-meta-chameleon',
+        fullName: 'Kylie&Meta хамелеон очки с бриллиантом',
+        prices: { kaspi: 390000, halyk: 406250, promo: 338000, cash: 325000 },
+      },
+    ],
+  },
+
   // ==========================================
   // 24. DJI
   // ==========================================
@@ -1232,19 +1248,16 @@ export const PRODUCT_MODELS: ProductModel[] = [
     ],
   },
   {
-    id: 'model-dji-mic-mini-black',
-    name: 'DJI MIC mini черный',
+    id: 'model-dji-moc-mini-2',
+    name: 'DJI MOC MINI 2',
     category: 'other',
     subcategory: 'DJI',
     warranty: '1 год официальной гарантии',
-    image: WEBP_IMAGES.djiMicMiniBlack,
-    colorOptions: [
-      { id: 'black', name: 'Черный (Black)', hex: '#1c1d1f', image: WEBP_IMAGES.djiMicMiniBlack },
-    ],
+    image: WEBP_IMAGES.djiMocMini2,
     variants: [
       {
-        id: 'dji-mic-mini-black',
-        fullName: 'DJI MIC mini черный',
+        id: 'dji-moc-mini-2',
+        fullName: 'DJI MOC MINI 2',
         prices: { kaspi: 64800, halyk: 67500, promo: 57000, cash: 54000 },
       },
     ],
