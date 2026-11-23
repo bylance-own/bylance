@@ -995,7 +995,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
       {
         id: 'dyson-hs09-base-chocolate',
         fullName: 'Dyson HS09 Co-anda Chocolate',
-        prices: { kaspi: 384000, halyk: 400000, promo: 330000, cash: 320000 },
+        prices: { kaspi: 408000, halyk: 425000, promo: 350000, cash: 340000 },
       },
     ],
   },
