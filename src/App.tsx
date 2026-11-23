@@ -1429,15 +1429,15 @@ export default function App() {
                         {/* SELECTOR: COLOR SELECTION WITH COMPACT ROUNDED WHITE THUMBNAILS */}
                         {model.colorOptions && model.colorOptions.length > 0 && (
                           <div className="space-y-2">
-                            <div className="flex items-center justify-between text-xs">
-                              <span className="font-extrabold uppercase tracking-wider text-[#7a0f2d] dark:text-[#ffead1]">
+                            <div className="flex items-center justify-between gap-2 text-xs min-w-0">
+                              <span className="font-extrabold uppercase tracking-wider text-[#7a0f2d] dark:text-[#ffead1] shrink-0">
                                 {t.colorLabel}
                               </span>
                               <span className="font-bold text-[#2a1a1f] dark:text-[#ffead1] bg-[#ffead1]/60 dark:bg-[#7a0f2d]/40 px-2.5 py-0.5 rounded-lg text-xs truncate ml-2 border border-[#7a0f2d]/20 dark:border-white/10 shadow-2xs">
                                 {localizedColorLabel}
                               </span>
                             </div>
-                            <div className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto no-scrollbar py-1">
+                            <div className="flex items-center gap-2.5 sm:gap-3 overflow-x-auto no-scrollbar px-2 py-2 -mx-2">
                               {model.colorOptions.map((col) => {
                                 const isColSel = activeColor?.id === col.id;
                                 const colNameLoc = localizeColorName(col.name, lang);

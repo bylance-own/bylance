@@ -113,7 +113,7 @@ export const WEBP_IMAGES = {
   kylieMetaChameleon: getProductWebpUrl('kylie_meta_chameleon.webp'),
 
   // DJI
-  djiMicMini: getAistudioAssetUrl('DJI_MIC_mini_97af69ce.webp'),
+  djiMicMini: getAistudioAssetUrl('DJI_MIC_mini_0a8dc605.webp'),
   djiMocMini2: getProductWebpUrl('dji_moc_mini_2.webp'),
   djiOsmoPocket4: getAistudioAssetUrl('DJI_OSMO_pocket_4_standart_2c8adaab.webp'),
 

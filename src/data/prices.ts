@@ -984,38 +984,6 @@ export const PRODUCT_MODELS: ProductModel[] = [
   // 19. DYSON AIRWRAP HS09 CO-ANDA
   // ==========================================
   {
-    id: 'model-dyson-hs09-base-plum',
-    name: 'Dyson HS09 Co-anda Jasper Plum',
-    category: 'dyson',
-    subcategory: 'Airwrap HS09',
-    warranty: '1 год официальной гарантии',
-    image: WEBP_IMAGES.dysonCoandaJasperPlum,
-    colorOptions: [{ ...DYSON_COLOR_JASPER_PLUM, image: WEBP_IMAGES.dysonCoandaJasperPlum }],
-    variants: [
-      {
-        id: 'dyson-hs09-base-plum',
-        fullName: 'Dyson HS09 Co-anda Jasper Plum',
-        prices: { kaspi: 384000, halyk: 400000, promo: 330000, cash: 320000 },
-      },
-    ],
-  },
-  {
-    id: 'model-dyson-hs09-base-pink',
-    name: 'Dyson HS09 Co-anda Ceramic Pink',
-    category: 'dyson',
-    subcategory: 'Airwrap HS09',
-    warranty: '1 год официальной гарантии',
-    image: WEBP_IMAGES.dysonCoandaCeramicPink,
-    colorOptions: [{ ...DYSON_COLOR_CERAMIC_PINK, image: WEBP_IMAGES.dysonCoandaCeramicPink }],
-    variants: [
-      {
-        id: 'dyson-hs09-base-pink',
-        fullName: 'Dyson HS09 Co-anda Ceramic Pink',
-        prices: { kaspi: 384000, halyk: 400000, promo: 330000, cash: 320000 },
-      },
-    ],
-  },
-  {
     id: 'model-dyson-hs09-base-chocolate',
     name: 'Dyson HS09 Co-anda Chocolate',
     category: 'dyson',
