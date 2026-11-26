@@ -765,7 +765,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'AirPods 4 (базовый)',
     category: 'apple',
     subcategory: 'AirPods',
-    warranty: '1 год официальной гарантии',
+    warranty: '6 месяцев гарантии',
     image: WEBP_IMAGES.airpods4,
     variants: [
       {
@@ -784,7 +784,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'AirPods 5',
     category: 'apple',
     subcategory: 'AirPods',
-    warranty: '1 год официальной гарантии',
+    warranty: '6 месяцев гарантии',
     image: WEBP_IMAGES.airpods5,
     variants: [
       {
@@ -803,7 +803,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'AirPods 5 с беспроводной зарядкой',
     category: 'apple',
     subcategory: 'AirPods',
-    warranty: '1 год официальной гарантии',
+    warranty: '6 месяцев гарантии',
     image: WEBP_IMAGES.airpods5,
     variants: [
       {
@@ -822,7 +822,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'AirPods Pro',
     category: 'apple',
     subcategory: 'AirPods',
-    warranty: '1 год официальной гарантии',
+    warranty: '6 месяцев гарантии',
     image: WEBP_IMAGES.airpodsPro,
     variants: [
       {
@@ -841,7 +841,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'Apple Watch Series 11',
     category: 'apple',
     subcategory: 'Apple Watch',
-    warranty: '1 год официальной гарантии',
+    warranty: '6 месяцев гарантии',
     image: WEBP_IMAGES.watch11Black,
     colorOptions: WATCH_11_COLORS,
     sizeOptions: ['42 мм', '46 мм'],
@@ -869,7 +869,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'Apple Watch SE',
     category: 'apple',
     subcategory: 'Apple Watch',
-    warranty: '1 год официальной гарантии',
+    warranty: '6 месяцев гарантии',
     image: WEBP_IMAGES.watchSe40Black,
     colorOptions: WATCH_SE_COLORS,
     sizeOptions: ['40 мм', '44 мм'],
@@ -988,7 +988,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'Dyson HS09 Co-anda Chocolate',
     category: 'dyson',
     subcategory: 'Airwrap HS09',
-    warranty: '1 год официальной гарантии',
+    warranty: '2 года официальной гарантии',
     image: WEBP_IMAGES.dysonCoandaChocolate,
     colorOptions: [{ ...DYSON_COLOR_CHOCOLATE, image: WEBP_IMAGES.dysonCoandaChocolate }],
     variants: [
@@ -1008,7 +1008,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'Dyson HS09 Co-anda (новый) Ceramic Pink',
     category: 'dyson',
     subcategory: 'Airwrap HS09 (Новый)',
-    warranty: '1 год официальной гарантии',
+    warranty: '2 года официальной гарантии',
     image: WEBP_IMAGES.dysonCoandaCeramicPink,
     colorOptions: [{ ...DYSON_COLOR_CERAMIC_PINK, image: WEBP_IMAGES.dysonCoandaCeramicPink }],
     variants: [
@@ -1024,7 +1024,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'Dyson HS09 Co-anda (новый) Jasper Plum',
     category: 'dyson',
     subcategory: 'Airwrap HS09 (Новый)',
-    warranty: '1 год официальной гарантии',
+    warranty: '2 года официальной гарантии',
     image: WEBP_IMAGES.dysonCoandaJasperPlum,
     colorOptions: [{ ...DYSON_COLOR_JASPER_PLUM, image: WEBP_IMAGES.dysonCoandaJasperPlum }],
     variants: [
@@ -1284,7 +1284,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'Яндекс станция лайт2',
     category: 'other',
     subcategory: 'Яндекс Станция',
-    warranty: '1 год официальной гарантии',
+    warranty: 'Без гарантии',
     image: WEBP_IMAGES.yandexLite2,
     variants: [
       {
@@ -1299,7 +1299,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'Яндекс станция Стрит',
     category: 'other',
     subcategory: 'Яндекс Станция',
-    warranty: '1 год официальной гарантии',
+    warranty: 'Без гарантии',
     image: WEBP_IMAGES.yandexStreet,
     variants: [
       {
@@ -1314,7 +1314,7 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'Яндекс станция Миди',
     category: 'other',
     subcategory: 'Яндекс Станция',
-    warranty: '1 год официальной гарантии',
+    warranty: 'Без гарантии',
     image: WEBP_IMAGES.yandexMidi,
     variants: [
       {
