@@ -67,7 +67,8 @@ import {
   localizeColorName,
   localizeProductName,
   localizeProductSubtitle,
-  localizeSubcategory
+  localizeSubcategory,
+  localizeWarranty
 } from './data/i18n';
 
 // Cart Item interface: stores specific variant + chosen payment method + color
@@ -1412,8 +1413,8 @@ export default function App() {
                             <span className="text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-white/5">
                               {localizeSubcategory(model.subcategory, lang)}
                             </span>
-                            <span className="text-[11px] sm:text-xs text-slate-400">
-                              {t.warranty1Year}
+                            <span className={`text-[11px] sm:text-xs ${model.warranty === 'Без гарантии' ? 'text-slate-400/80 dark:text-slate-500' : 'text-slate-400'}`}>
+                              {localizeWarranty(model.warranty, lang)}
                             </span>
                           </div>
                           <h3 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white leading-snug pt-0.5">

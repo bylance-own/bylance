@@ -283,7 +283,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
     tgOpenChannel: 'Перейти в Telegram-канал ↗',
     writeWhatsApp: 'Написать в WhatsApp',
 
-    catalogTrustBadge: '100% Оригинальная техника с официальной гарантией 1 год',
+    catalogTrustBadge: '100% Оригинальная техника с официальной гарантией',
     catalogTitle: 'Каталог устройств в наличии',
     searchPlaceholder: 'Поиск по названию модели...',
     clearSearch: 'Очистить поиск',
@@ -366,7 +366,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
     whyTitle: 'Почему технику выбирают в Bylance',
     whySubtitle: 'Надёжный магазин в Алматы с честными ценами и официальной гарантией',
     adv1Title: '100% Оригинал',
-    adv1Desc: 'Исключительно новые запечатанные устройства в заводской упаковке. Официальная гарантия 1 год на Apple и Dyson.',
+    adv1Desc: 'Исключительно новые запечатанные устройства в заводской упаковке. Гарантия 2 года на Dyson Co-anda HS09, 1 год на iPhone, iPad, MacBook и Dyson, 6 месяцев на AirPods и Apple Watch.',
     adv2Title: 'Рассрочка Kaspi и Halyk',
     adv2Desc: 'Оформление через Kaspi.kz и Halyk Bank на 3, 6, 12 или 24 месяца удаленно в WhatsApp или в магазине.',
     adv3Title: 'Программа Trade-In',
@@ -529,7 +529,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
     tgOpenChannel: 'Telegram-арнаға өту ↗',
     writeWhatsApp: 'WhatsApp-қа жазу',
 
-    catalogTrustBadge: '100% түпнұсқа техника · 1 жыл ресми кепілдік',
+    catalogTrustBadge: '100% түпнұсқа техника · ресми кепілдік',
     catalogTitle: 'Қолда бар техника каталогы',
     searchPlaceholder: 'Модель атауын жазып іздеңіз...',
     clearSearch: 'Тазалау',
@@ -612,7 +612,7 @@ export const TRANSLATIONS: Record<Lang, Translations> = {
     whyTitle: 'Неге техниканы Bylance-тан алады',
     whySubtitle: 'Алматыдағы адал бағасы мен ресми кепілдігі бар сенімді дүкен',
     adv1Title: '100% Түпнұсқа',
-    adv1Desc: 'Зауыттық қаптамасы ашылмаған су жаңа құрылғылар ғана. Apple және Dyson техникасына 1 жыл ресми кепілдік беріледі.',
+    adv1Desc: 'Зауыттық қаптамасы ашылмаған су жаңа құрылғылар ғана. Dyson Co-anda HS09-ға 2 жыл, iPhone, iPad, MacBook пен Dyson-ға 1 жыл, AirPods пен Apple Watch-қа 6 ай кепілдік беріледі.',
     adv2Title: 'Kaspi және Halyk бөліп төлеуі',
     adv2Desc: 'Kaspi.kz пен Halyk Bank арқылы 3, 6, 12 немесе 24 айға WhatsApp арқылы қашықтан не дүкеннен рәсімдеуге болады.',
     adv3Title: 'Trade-In бағдарламасы',
@@ -797,7 +797,7 @@ export function localizeStoreAddress(addr: StoreAddress, lang: Lang): StoreAddre
       ...addr,
       title: 'Жаңа техника дүкені',
       address: 'Василий Клочков көш., 119, 1-қабат (Бостандық ауданы, 050057)',
-      description: 'Қорабы ашылмаған су жаңа түпнұсқа Apple, Dyson және басқа да гаджеттер — 1 жыл ресми кепілдікпен және бөліп төлеумен.',
+      description: 'Қорабы ашылмаған су жаңа түпнұсқа Apple, Dyson және басқа да гаджеттер — ресми кепілдікпен және бөліп төлеумен.',
       badge: 'Жаңа техника',
     };
   }
@@ -927,4 +927,20 @@ export function localizeSubcategory(subcat: string, lang: Lang): string {
   return subcat
     .replace('(Базовый)', '(Базалық)')
     .replace('(Новый)', '(Жаңа)');
+}
+
+export function localizeWarranty(warranty: string, lang: Lang): string {
+  if (lang === 'ru') return warranty;
+  switch (warranty) {
+    case '1 год официальной гарантии':
+      return '1 жыл ресми кепілдік';
+    case '2 года официальной гарантии':
+      return '2 жыл ресми кепілдік';
+    case '6 месяцев гарантии':
+      return '6 ай кепілдік';
+    case 'Без гарантии':
+      return 'Кепілдіксіз';
+    default:
+      return warranty;
+  }
 }
