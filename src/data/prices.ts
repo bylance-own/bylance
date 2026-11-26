@@ -1284,7 +1284,6 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'Яндекс станция лайт2',
     category: 'other',
     subcategory: 'Яндекс Станция',
-    warranty: '1 год официальной гарантии',
     image: WEBP_IMAGES.yandexLite2,
     variants: [
       {
@@ -1299,7 +1298,6 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'Яндекс станция Стрит',
     category: 'other',
     subcategory: 'Яндекс Станция',
-    warranty: '1 год официальной гарантии',
     image: WEBP_IMAGES.yandexStreet,
     variants: [
       {
@@ -1314,7 +1312,6 @@ export const PRODUCT_MODELS: ProductModel[] = [
     name: 'Яндекс станция Миди',
     category: 'other',
     subcategory: 'Яндекс Станция',
-    warranty: '1 год официальной гарантии',
     image: WEBP_IMAGES.yandexMidi,
     variants: [
       {
